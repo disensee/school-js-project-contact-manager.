@@ -1,0 +1,43 @@
+#contact-app{
+	overflow: auto;
+}
+
+#contact-list-container,#contact-details-container,#contact-form-container{
+	float:left;
+	background-color: lightgray;
+	border: 1px solid black;
+	margin:20px;
+	padding:20px;
+}
+
+#contact-list-container{
+	width:200px;
+}
+
+#contact-details-container{
+	width:250px;
+}
+
+#contact-form-container{
+	width:500px;
+}
+
+#contact-form label{
+	display: inline-block;
+	width:100px;
+	text-align: right;
+}
+
+.validation{
+	color:red;
+}
+
+
+
+/* For when we make the app 'reponsive'... */
+@media screen and (max-width: 800px) {
+        
+        
+}
+
+

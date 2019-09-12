@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Contacts</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<script src="js/libs/data-access/local-storage/DataAccess.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+</head>
+<body>
+	<h1>Contact Manager</h1>
+	<div id="contact-app">
+		<div id="contact-list-container">
+			<h2>Contact List</h2>
+			<ul id="contact-list"></ul>
+			<input type="button" id="btnAdd" value="Add Contact">
+		</div>
+		<div id="contact-details-container">
+			<h2>Contact Details</h2>
+			<h2 id="lblContactName">Contact Name</h2>
+			<h3 id="lblContactEmail">Email</h3>
+			<h3 id="lblContactPhone">Phone</h3>
+			<h5 id="lblContactId">ID</h5>
+			<input type="button" id="btnEdit" value="Edit">
+			<input type="button" id="btnDelete" value="Delete">
+		</div>
+		<div id="contact-form-container">
+			<h2>Contact Form</h2>
+			<form id="contact-form">
+				ID:<input type="text" name="id" id="txtId" size="3" readonly/>
+				<br>
+				<label>First Name:</label>
+				<input type="text" name="firstName" id="txtFirstName">
+				<span class="validation" id="vFirstName"></span>
+				<br>
+				<label>Last Name:</label>
+				<input type="text" name="lastName" id="txtLastName">
+				<span class="validation" id="vLastName"></span>
+				<br>
+				<label>Email:</label>
+				<input type="text" name="email" id="txtEmail">
+				<span class="validation" id="vEmail"></span>
+				<br>
+				<label>Phone:</label>
+				<input type="text" name="phone" id="txtPhone">
+				<span class="validation" id="vPhone"></span>
+				<br>
+				<label>&nbsp;</label>
+				<input type="submit" id="btnSave" value="SAVE">
+			</form>
+		</div>
+	</div>
+</body>
+</html>
