@@ -43,6 +43,28 @@ window.addEventListener("load", function(){
 	var vEmail = document.getElementById("vEmail");
 	var vPhone = document.getElementById("vPhone");
 
+	var da = new DataAccess();
+	//populateLocalStorage();
+	showAllContacts();
+
+	function showAllContacts(){
+		var contacts = da.getAll();
+		contactList.innerHTML = "";
+
+		if(contacts.length > 0){
+			for(var x = 0; x < contacts.length; x++){
+				var c = contacts[x];
+				var li = document.createElement("li");
+				li.innerHTML = c.firstName + " " + c.lastName;
+				li.setAttribute("contactId", c.id);
+				contactList.appendChild(li);
+			}
+		}else{
+			var h3 = document.createElement("h3");
+			h3.innerHTML = "No contatcts";
+			contactList.appendChild(h3);
+		}
+	}
 
 	
 
