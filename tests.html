@@ -28,8 +28,23 @@
 			phone: "555-5555"
 		};
 
-	
+		var da = new DataAccess();
+		/*
+		da.insert(contact1);
+		da.insert(contact2);
+		da.insert(contact3);
+		*/
 
+		var allContacts = da.getAll();
+		console.log(allContacts);
+
+		var sara = da.getById(3);
+		console.log(sara);
+
+		sara.lastName = "Anderson";
+		da.update(sara);
+
+		da.deleteById(sara.id);
 
 	});	
 
