@@ -21,6 +21,8 @@ window.addEventListener("load", function(){
 
 	var contactList = document.getElementById("contact-list");
 	var btnAdd = document.getElementById("btnAdd");
+	var btnBack = document.getElementById("btnBack");
+	var btnBackForm = document.getElementById("btnBackForm");
 
 	var contactDetails = document.getElementById("contact-details");
 	var lblContactName = document.getElementById("lblContactName");
@@ -43,11 +45,18 @@ window.addEventListener("load", function(){
 	var vEmail = document.getElementById("vEmail");
 	var vPhone = document.getElementById("vPhone");
 
+	var listView = document.getElementById("contact-list-container");
+	var detailsView = document.getElementById("contact-details-container");
+	var formView = document.getElementById("contact-form-container");
+
 	var da = new DataAccess();
 	//populateLocalStorage();
 	showAllContacts();
 
 	function showAllContacts(){
+
+		showView(listView);
+
 		var contacts = da.getAll();
 		contactList.innerHTML = "";
 
@@ -66,7 +75,104 @@ window.addEventListener("load", function(){
 		}
 	}
 
+	contactList.addEventListener("click", function(evt){
+		//alert(evt.target.getAttribute("contactId"));
+		showView(detailsView);
+		var selectedId = evt.target.getAttribute("contactId");
+		var selectedContact = da.getById(selectedId);
+		showContactDetails(selectedContact);
+	});
+
+	function showContactDetails(contact){
+		lblContactName.innerHTML = contact.firstName + " " + contact.lastName;
+		lblContactEmail.innerHTML = contact.email;
+		lblContactPhone.innerHTML = contact.phone;
+		lblContactId.innerHTML = contact.id;
+	}
+
+	btnEdit.addEventListener("click", function(){
+		showView(formView);
+		var id = lblContactId.innerHTML;
+		var selectedContact = da.getById(id);
+		editContact(selectedContact);
+	});
+
+	function editContact(contact){
+		txtId.value = contact.id;
+		txtFirstName.value = contact.firstName;
+		txtLastName.value = contact.lastName;
+		txtEmail.value = contact.email;
+		txtPhone.value = contact.phone;
+	}
+
+	function clearForm(){
+		txtId.value = "";
+		txtFirstName.value = "";
+		txtLastName.value = "";
+		txtEmail.value = "";
+		txtPhone.value = "";
+	}
+
+	btnDelete.addEventListener("click", function(){
+		var id = lblContactId.innerHTML;
+		if(id > 0 && confirm("Are you sure you want to delete this contact?")){
+			da.deleteById(id);
+			clearForm();
+			showAllContacts();
+		}
+	});
+
+	btnSave.addEventListener("click", function(evt){
+		evt.preventDefault();
+		if(validate()){
+			var obj = {
+				id: txtId.value,
+				firstName: txtFirstName.value,
+				lastName: txtLastName.value,
+				email: txtEmail.value,
+				phone: txtPhone.value
+			};
+
+			if(obj.id > 0){
+				da.update(obj);
+			}else{
+				da.insert(obj);
+			}
+			showAllContacts();
+		}
+	});
+
+	function validate(){
+		return true;
+	}
+
+	function showView(view){
+		
+		listView.style.opacity = 0;
+		detailsView.style.opacity = 0;
+		formView.style.opacity = 1;
+
+		view.style.opacity = 1;
+
+		listView.style.zIndex = 0;
+		detailsView.style.zIndex = 0;
+		formView.style.zIndex = 0;
+
+		view.style.zIndex = 1;
+	}
+
+	btnAdd.addEventListener("click", function(evt){
+		clearForm();
+		showView(formView);
+	});
+
+	btnBack.addEventListener("click", function(evt){
+		showView(listView);
+	});
 	
+	btnBackForm.addEventListener("click", function(evt){
+		showView(listView);
+	});
 
 
 });
