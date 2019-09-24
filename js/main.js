@@ -49,6 +49,8 @@ window.addEventListener("load", function(){
 	var detailsView = document.getElementById("contact-details-container");
 	var formView = document.getElementById("contact-form-container");
 
+	lblContactId.style.display = "none";
+	txtId.style.display = "none";
 	var da = new DataAccess();
 	//populateLocalStorage();
 	showAllContacts();
@@ -77,10 +79,10 @@ window.addEventListener("load", function(){
 
 	contactList.addEventListener("click", function(evt){
 		//alert(evt.target.getAttribute("contactId"));
-		showView(detailsView);
 		var selectedId = evt.target.getAttribute("contactId");
 		var selectedContact = da.getById(selectedId);
 		showContactDetails(selectedContact);
+		showView(detailsView);
 	});
 
 	function showContactDetails(contact){
@@ -143,8 +145,54 @@ window.addEventListener("load", function(){
 	});
 
 	function validate(){
-		return true;
+		clearValidation();
+		var valid = true;
+
+		if(txtFirstName.value == ""){
+			vFirstName.innerHTML = "Please enter a first name";
+			valid = false;
+		}
+
+		if(txtLastName.value == ""){
+			vLastName.innerHTML = "Please enter a last name";
+			valid = false;
+		}
+
+		if(txtPhone.value == ""){
+			vPhone.innerHTML = "Please enter a phone number";
+			valid = false;
+		}else if(validatePhone(txtPhone.value) == false){
+			vPhone.innerHTML = "Please enter a valid phone number";
+			valid = false;
+		}
+
+		if(txtEmail.value == ""){
+			vEmail.innerHTML = "Please enter an email address";
+			valid = false;
+		}else if(validateEmail(txtEmail.value) == false){
+			vEmail.innerHTML = "Please enter a valid email address";
+			valid = false;
+		}
+		
+		return valid;
 	}
+
+	function validatePhone(phone){
+		var regExp = /^(\()?\d{3}(\))?(-|\s)?\d{3}(-|\s)\d{4}$/
+		return regExp.test(phone);
+	}
+
+	function validateEmail(email){
+        var regExp = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        return regExp.test(email);
+	}
+	
+	function clearValidation(){
+		vFirstName.innerHTML = "";
+		vLastName.innerHTML = "";
+		vPhone.innerHTML = "";
+		vEmail.innerHTML = "";
+    }
 
 	function showView(view){
 		
@@ -159,6 +207,7 @@ window.addEventListener("load", function(){
 		formView.style.zIndex = 0;
 
 		view.style.zIndex = 1;
+
 	}
 
 	btnAdd.addEventListener("click", function(evt){
