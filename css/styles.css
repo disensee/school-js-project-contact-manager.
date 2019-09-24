@@ -50,19 +50,6 @@ h1{
 	/*transition: opacity 1s;*/
 }
 
-/*
-#lblContactId{
-	display: none;
-}
-
-#txtId{
-	display:none;
-}
-
-#contact-form-container > #contact-form > label > #frmIdLabel{
-	display:none;
-}
-*/
 /* For when we make the app 'reponsive'... */
 @media screen and (max-width: 800px) {
         
