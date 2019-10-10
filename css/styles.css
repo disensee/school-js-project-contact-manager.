@@ -2,12 +2,31 @@
 	overflow: auto;
 }
 
+.header{
+	background-color: #5D5C61;
+	color: #FFFFFF;
+	font-family: Verdana, sans-serif;
+	padding-left: 20px;
+	padding-top: 5px;	
+}
+
+
 #contact-list-container,#contact-details-container,#contact-form-container{
 	float:left;
-	background-color: lightgray;
-	border: 1px solid black;
+	font-family: Verdana, sans-serif;
+	color: white;
+	background-color: #557A95;
+	border: 1px solid #7395AE;
 	margin:20px;
 	padding:20px;
+}
+
+h2{
+	color: #c9ba99;
+}
+
+#lblContactName{
+	color: #FFFFFF;
 }
 
 #contact-list-container{
