@@ -48,6 +48,7 @@ window.addEventListener("load", function(){
 	var listView = document.getElementById("contact-list-container");
 	var detailsView = document.getElementById("contact-details-container");
 	var formView = document.getElementById("contact-form-container");
+	
 
 	lblContactId.style.display = "none";
 	txtId.style.display = "none";
@@ -158,14 +159,6 @@ window.addEventListener("load", function(){
 			valid = false;
 		}
 
-		if(txtPhone.value == ""){
-			vPhone.innerHTML = "Please enter a phone number";
-			valid = false;
-		}else if(validatePhone(txtPhone.value) == false){
-			vPhone.innerHTML = "Please enter a valid phone number";
-			valid = false;
-		}
-
 		if(txtEmail.value == ""){
 			vEmail.innerHTML = "Please enter an email address";
 			valid = false;
@@ -174,6 +167,14 @@ window.addEventListener("load", function(){
 			valid = false;
 		}
 		
+		if(txtPhone.value == ""){
+			vPhone.innerHTML = "Please enter a phone number";
+			valid = false;
+		}else if(validatePhone(txtPhone.value) == false){
+			vPhone.innerHTML = "Invalid phone number entered (valid format: (xxx)xxx-xxxx or xxx-xxx-xxxx)";
+			valid = false;
+		}
+
 		return valid;
 	}
 

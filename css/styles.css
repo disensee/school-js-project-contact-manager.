@@ -48,7 +48,8 @@ h2{
 }
 
 .validation{
-	color:red;
+	color:orange;
+	font-size: 13px;
 }
 html,body{margin: 0; padding: 0;}
 
