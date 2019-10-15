@@ -77,7 +77,8 @@ h1{
 
 /* For when we make the app 'reponsive'... */
 @media screen and (max-width: 800px) {
-        #txtFirstName, #txtLastName, #txtPhone, #txtEmail{
+
+		#txtFirstName, #txtLastName, #txtPhone, #txtEmail{
 			width: 90%;
 			display: block;
 		}
