@@ -17,8 +17,6 @@ window.addEventListener("load", function(){
 	}
 
 
-	
-
 	var contactList = document.getElementById("contact-list");
 	var btnAdd = document.getElementById("btnAdd");
 	var btnBack = document.getElementById("btnBack");
@@ -101,6 +99,8 @@ window.addEventListener("load", function(){
 	});
 
 	function editContact(contact){
+		clearForm();
+		clearValidation();
 		txtId.value = contact.id;
 		txtFirstName.value = contact.firstName;
 		txtLastName.value = contact.lastName;
@@ -149,32 +149,38 @@ window.addEventListener("load", function(){
 		clearValidation();
 		var valid = true;
 
-		if(txtFirstName.value == ""){
-			vFirstName.innerHTML = "Please enter a first name";
+		if(txtPhone.value == ""){
+			vPhone.innerHTML = "Please enter a phone number";
 			valid = false;
-		}
-
-		if(txtLastName.value == ""){
-			vLastName.innerHTML = "Please enter a last name";
+			txtPhone.focus();
+		}else if(validatePhone(txtPhone.value) == false){
+			vPhone.innerHTML = "Invalid phone number entered (valid format: (xxx)xxx-xxxx or xxx-xxx-xxxx)";
 			valid = false;
+			txtPhone.focus();
 		}
 
 		if(txtEmail.value == ""){
 			vEmail.innerHTML = "Please enter an email address";
 			valid = false;
+			txtEmail.focus();
 		}else if(validateEmail(txtEmail.value) == false){
 			vEmail.innerHTML = "Please enter a valid email address";
 			valid = false;
-		}
-		
-		if(txtPhone.value == ""){
-			vPhone.innerHTML = "Please enter a phone number";
-			valid = false;
-		}else if(validatePhone(txtPhone.value) == false){
-			vPhone.innerHTML = "Invalid phone number entered (valid format: (xxx)xxx-xxxx or xxx-xxx-xxxx)";
-			valid = false;
+			txtEmail.focus();
 		}
 
+		if(txtLastName.value == ""){
+			vLastName.innerHTML = "Please enter a last name";
+			valid = false;
+			txtLastName.focus();
+		}
+
+		if(txtFirstName.value == ""){
+			vFirstName.innerHTML = "Please enter a first name";
+			valid = false;
+			txtFirstName.focus();
+		}
+		
 		return valid;
 	}
 
@@ -213,6 +219,7 @@ window.addEventListener("load", function(){
 
 	btnAdd.addEventListener("click", function(evt){
 		clearForm();
+		clearValidation();
 		showView(formView);
 	});
 
