@@ -164,7 +164,7 @@ window.addEventListener("load", function(){
 			valid = false;
 			txtEmail.focus();
 		}else if(validateEmail(txtEmail.value) == false){
-			vEmail.innerHTML = "Please enter a valid email address";
+			vEmail.innerHTML = "Please enter a valid email address (valid format: emailaddress@domainname.com");
 			valid = false;
 			txtEmail.focus();
 		}
