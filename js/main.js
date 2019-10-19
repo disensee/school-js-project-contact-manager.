@@ -77,7 +77,6 @@ window.addEventListener("load", function(){
 	}
 
 	contactList.addEventListener("click", function(evt){
-		//alert(evt.target.getAttribute("contactId"));
 		var selectedId = evt.target.getAttribute("contactId");
 		var selectedContact = da.getById(selectedId);
 		showContactDetails(selectedContact);
